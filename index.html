@@ -1,25 +1,28 @@
 <html>
-    <head></head>
     <body>
-        <form>
-            <input id="lat" placeholder="enter latiude"/>
-            <input  id="lon" placeholder="enter longitude"/>
-            <button onclick="getweather()">submit</button>
-        </form>
-        <script>
-            function getweather(){
+        <input id="lat" placeholder="Latitude"/>
+        <input id="lon" placeholder="Longitude"/>
+        <button onclick="getWeather()">Submit</button>
+        <p>Temperature in:
+           <span id="temp"></span><sup>0</sup>C
+           <span id="loc"></span>
+        </p>
+    </body>
+    <script>
+        function getWeather(){
                 const lat=document.getElementById("lat").value;
                 const lon=document.getElementById("lon").value;
-                const api="9c8a70a56efcc9410a6e0b7367749d1b"
-                const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api}&units=metric`
-                fetch(url)
-                .then(res=>{
-                    return res.json()
-                })
-                .then(resjson=>{
-                    console.log(resjson)
-                })
-            } 
-        </script>
-    </body>
+                const api="1dc498332ce1abf1982814c72ffb83f3"
+                    const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api}&units=metric`
+                    fetch(url)
+                        .then((res)=>{
+                            return res.json()
+                        })
+                        .then(resJson=>{
+                            console.log(resJson)
+                           document.getElementById("temp").innerHTML=resJson.main.temp
+                           document.getElementById("loc").innerHTML=resJson.name
+                        })
+            }              
+    </script>
 </html>
